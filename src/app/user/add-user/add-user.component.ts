@@ -25,7 +25,7 @@ export class AddUserComponent {
       "profession": F.controls['profession'].value
     }
 
-
+    this.userS.addUser(user).subscribe(() => { });
     console.log(F);
   }
 
