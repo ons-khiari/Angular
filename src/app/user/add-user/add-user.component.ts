@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/Core/Services/user.service';
 import { User } from 'src/app/model/User';
 
@@ -9,40 +10,23 @@ import { User } from 'src/app/model/User';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent {
-  constructor(private userService: UserService) { }
-
-  user: User = {
-    "idCustomer": 6,
-    "firstName": "",
-    "lastName": "",
-    "birthDate": "",
-    "accountCategory": "Customer",
-    "email": "",
-    "password": "",
-    "picture": "",
-    "profession": ""
-  }
-
-  users: User[] = [];
+  constructor(private Router: Router, private userS: UserService) { }
 
   add(F: NgForm) {
-    if (F.valid) {
-      this.users.push({ ...this.user });
-      this.resetForm();
+    const user: User = {
+      "idCustomer": 6,
+      "firstName": F.controls['fn'].value,
+      "lastName": F.controls['ln'].value,
+      "birthDate": F.controls['birthdate'].value,
+      "accountCategory": "Customer",
+      "email": F.controls['email'].value,
+      "password": F.controls['password'].value,
+      "picture": "https://bootdey.com/img/Content/avatar/avatar5.png",
+      "profession": F.controls['profession'].value
     }
+
+
+    console.log(F);
   }
 
-  resetForm() {
-    this.user = {
-      "idCustomer": 6,
-      "firstName": "",
-      "lastName": "",
-      "birthDate": "",
-      "accountCategory": "Customer",
-      "email": "",
-      "password": "",
-      "picture": "",
-      "profession": ""
-    };
-  }
 }

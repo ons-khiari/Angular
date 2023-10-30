@@ -16,7 +16,7 @@ export class UserService {
     return this.http.get<User[]>(this.URL);
   }
   getUserById(id: number) { }
-  addUser() { }
+  addUser(user: User) { return this.http.post(this.URL + "/add", user) }
   updateUser(u: User) { }
   deleteUser(id: number) { }
 
