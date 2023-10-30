@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/Core/Services/user.service';
 import { User } from 'src/app/model/User';
 
@@ -10,7 +9,7 @@ import { User } from 'src/app/model/User';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent {
-  constructor(private Router: Router, private userS: UserService) { }
+  constructor(private userService: UserService) { }
 
   user: User = {
     "idCustomer": 6,
@@ -24,8 +23,26 @@ export class AddUserComponent {
     "profession": ""
   }
 
+  users: User[] = [];
+
   add(F: NgForm) {
-    console.log(F);
+    if (F.valid) {
+      this.users.push({ ...this.user });
+      this.resetForm();
+    }
   }
 
+  resetForm() {
+    this.user = {
+      "idCustomer": 6,
+      "firstName": "",
+      "lastName": "",
+      "birthDate": "",
+      "accountCategory": "Customer",
+      "email": "",
+      "password": "",
+      "picture": "",
+      "profession": ""
+    };
+  }
 }
