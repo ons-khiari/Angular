@@ -1,0 +1,73 @@
+<h2>Add New User</h2>
+<!--<button (click)="add()">Add</button-->
+<form #addForm="ngForm" (ngSubmit)="add(addForm)">
+    <div class="form-group">
+        <label for="fn">First Name</label>
+        <input type="text" class="form-control" id="fn" placeholder="Enter First Name" name="fn" ngModel required
+            pattern="[a-zA-Z]+" minlength="3" #fn="ngModel">
+        <small class="text text-danger" *ngIf="fn?.errors?.['required'] && fn.touched">First Name is required</small>
+        <small class="text text-danger" *ngIf="fn?.errors?.['pattern'] && fn.touched">Must contain only letters</small>
+        <small class="text text-danger" *ngIf="fn?.errors?.['minlength'] && fn.touched">Minimum length is 3
+            characters</small>
+    </div>
+
+    <div class="form-group">
+        <label for="ln">Last Name</label>
+        <input type="text" class="form-control" id="ln" placeholder="Enter Last Name" name="ln" ngModel required
+            pattern="[a-zA-Z]+" minlength="3" #ln="ngModel">
+        <small class="text text-danger" *ngIf="ln?.errors?.['required']  && ln.touched">Last Name is required</small>
+        <small class="text text-danger" *ngIf="ln?.errors?.['pattern']  && ln.touched">Must contain only letters</small>
+        <small class="text text-danger" *ngIf="ln?.errors?.['minlength']  && ln.touched">Minimum length is 3
+            characters</small>
+    </div>
+
+    <div class="form-group">
+        <label for="birthdate">Birth date</label>
+        <input type="text" class="form-control" id="birthdate" placeholder="Enter Birth date" name="birthdate" ngModel
+            required #birthdate="ngModel">
+        <small class="text text-danger" *ngIf="birthdate?.errors?.['required'] && birthdate.touched">Date is
+            required</small>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" ngModel required
+            pattern="^[a-zA-Z0-9._-]+@gmail.com" #email="ngModel">
+        <small class="text text-danger" *ngIf="email?.errors?.['required'] && email.touched">Email is required</small>
+        <small class="text text-danger" *ngIf="email?.errors?.['pattern'] && email.touched">Must be a valid Gmail
+            address</small>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" ngModel
+            required pattern="^[a-zA-Z0-9]{8,}" #password="ngModel">
+        <small class="text text-danger" *ngIf="password?.errors?.['required'] && password.touched">Password is
+            required</small>
+        <small class="text text-danger" *ngIf="password?.errors?.['pattern'] && password.touched">Must contain at least
+            8
+            characters with letters and numbers</small>
+    </div>
+
+    <div class="form-group">
+        <label for="profession">Profession</label>
+        <input type="text" class="form-control" id="profession" placeholder="Enter Profession" name="profession" ngModel
+            required minlength="3" #profession="ngModel">
+        <small class="text text-danger" *ngIf="profession?.errors?.['required'] && profession.touched">Profession is
+            required</small>
+        <small class="text text-danger" *ngIf="profession?.errors?.['minlength'] && profession.touched">Minimum length
+            is 3
+            characters</small>
+    </div>
+
+    <div class="form-group">
+        <label for="customerCategory">Customer Category</label>
+        <input type="text" class="form-control" id="customerCategory" placeholder="Enter Customer Category"
+            name="customerCategory" ngModel required [value]="'Customer'" disabled #customerCategory="ngModel">
+        <small class="text text-danger"
+            *ngIf="customerCategory?.errors?.['required'] && customerCategory.touched">Customer Category is
+            required</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">Submit</button>
+</form>
